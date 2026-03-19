@@ -25,13 +25,15 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+In this project, I stepped into the role of a "Game Glitch Investigator" to evaluate, debug, and repair an AI-generated Python application. I used GitHub Copilot and Gemini to identify hidden logical errors, such as backward hints and broken scoring systems.
+
+To make the app production-ready, I refactored the codebase by separating the core game logic into a dedicated logic_utils.py file. I then used test-driven development, writing automated tests with pytest to mathematically prove my fixes worked. Ultimately, this project taught me how to effectively manage session state in Streamlit and how to critically analyze AI-generated code rather than blindly trusting it.
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+This project is a fully functional number guessing game built with Streamlit. The player selects a difficulty (Easy, Normal, or Hard) and has a limited number of attempts to guess a randomly generated secret number between 1 and 100. The game provides accurate "Too High" or "Too Low" hints to help the player win. Originally, the AI-generated starter code was filled with logical bugs and state management issues, but it has now been completely refactored, debugged, and tested.
+
+- ![Game Demo](demo.png)
 
 ## 🚀 Stretch Features
 
