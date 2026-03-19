@@ -1,16 +1,25 @@
-from logic_utils import check_guess
+from logic_utils import get_range_for_difficulty, check_guess, update_score
 
-def test_winning_guess():
-    # If the secret is 50 and guess is 50, it should be a win
-    result = check_guess(50, 50)
-    assert result == "Win"
+def test_hard_difficulty_range():
+    # Tests that the Hard difficulty returns the correct 1 to 100 range
+    low, high = get_range_for_difficulty("Hard")
+    assert low == 1
+    assert high == 100
 
-def test_guess_too_high():
-    # If secret is 50 and guess is 60, hint should be "Too High"
-    result = check_guess(60, 50)
-    assert result == "Too High"
+def test_check_guess_too_high():
+    # Tests that guessing higher than the secret returns "Too High" and tells the user to go "LOWER!"
+    outcome, message = check_guess(guess=75, secret=50)
+    assert outcome == "Too High"
+    assert "LOWER" in message
 
-def test_guess_too_low():
-    # If secret is 50 and guess is 40, hint should be "Too Low"
-    result = check_guess(40, 50)
-    assert result == "Too Low"
+def test_check_guess_too_low():
+    # Tests that guessing lower than the secret returns "Too Low" and tells the user to go "HIGHER!"
+    outcome, message = check_guess(guess=25, secret=50)
+    assert outcome == "Too Low"
+    assert "HIGHER" in message
+
+def test_update_score_win():
+    # Tests that winning on the first attempt gives the correct score without the +1 bug
+    # 100 - 10 * 1 = 90 points
+    new_score = update_score(current_score=0, outcome="Win", attempt_number=1)
+    assert new_score == 90
